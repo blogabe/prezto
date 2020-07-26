@@ -42,8 +42,8 @@ if type brew &>/dev/null; then
   alias daily-brew='caskum && brewus && brewc'
 fi
 
-alias dotfile-update='git -C "$HOME/.dotfiles" pull origin master'
-alias zpme-update='git -C "$HOME/.zprezto" pull origin working'
+alias dotfile-update='git -C "$HOME/.dotfiles" fetch origin master && git -C "$HOME/.dotfiles" reset --hard origin/master'
+alias zpme-update='git -C "$HOME/.zprezto" fetch origin working && git -C "$HOME/.zprezto" reset --hard origin/working'
 alias dz-update='dotfile-update && zpme-update'
 function zpupstream-update() {
   cd $HOME/.zprezto
@@ -183,7 +183,7 @@ function fl() {
     else if forkLift is not null then
         set appName to forkLift
     end if
-    
+
     tell application appName
         activate
         set forkLiftVersion to version
